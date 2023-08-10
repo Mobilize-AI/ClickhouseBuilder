@@ -50,6 +50,28 @@ class Limit
     }
 
     /**
+     * Set number of rows to take.
+     *
+     * @param int $limit
+     * @return void
+     */
+    public function setLimit(int $limit): void
+    {
+        $this->limit = $limit;
+    }
+
+    /**
+     * Set number of rows to skip.
+     *
+     * @param int|null $offset
+     * @return void
+     */
+    public function setOffset(?int $offset): void
+    {
+        $this->offset = $offset;
+    }
+
+    /**
      * Get number of rows to skip.
      *
      * @return int
@@ -68,4 +90,6 @@ class Limit
     {
         return $this->by;
     }
+
+
 }
