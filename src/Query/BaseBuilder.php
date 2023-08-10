@@ -1702,6 +1702,24 @@ abstract class BaseBuilder
     }
 
     /**
+     * Add offset statement.
+     *
+     * @param int      $skip
+     *
+     * @return static
+     */
+    public function skip(int $skip)
+    {
+        if (is_null($this->limit)) {
+            $this->limit = new Limit(0, $skip);
+        } else {
+            $this->limit->setLimit($skip);
+        }
+
+        return $this;
+    }
+
+    /**
      * Alias for limitBy method.
      *
      * @param int   $count
