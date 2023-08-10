@@ -1656,10 +1656,20 @@ abstract class BaseBuilder
      */
     public function limit(int $limit, int $offset = null)
     {
-        $this->limit = new Limit($limit, $offset);
+        if ($this->limit) {
+            if ($limit !== $this->limit->getLimit()) {
+                $this->limit->setLimit($limit);
+            }
+            if ($offset !== null && $offset !== $this->limit->getOffset()) {
+                $this->limit->setOffset($offset);
+            }
+        } else {
+            $this->limit = new Limit($limit, $offset);
+        }
 
         return $this;
     }
+
 
     /**
      * Add limit n by statement.
